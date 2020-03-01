@@ -11,11 +11,6 @@
         </a>
       </div>
 
-      <div class="col">
-        <a href="/delete_photo/<%= @photo.id %>" class="btn btn-block btn-outline-secondary">
-          Delete photo
-        </a>
-      </div>
     </div>
 
     <dl>
@@ -71,19 +66,23 @@
   </div>
 </div>
 
- <dt>Delete photo</dt>
+<% if session.fetch(:user_id) == @photo.owner_id %>
+ <dt>Delete photo, <%= @photo.poster.username %> </dt>
   <dd>
     <a href="/delete_photo/<%= @photo.id %>">
       Delete this photo
     </a>
   </dd>
+<% end %>
 
  <dt>Unlike</dt>
+
   <dd>
     <a href="/delete_like/<%= @photo.id %>/<%= @user.id %>">
       Unlike this photo
     </a>
   </dd>
+
 
 </dl>
 
