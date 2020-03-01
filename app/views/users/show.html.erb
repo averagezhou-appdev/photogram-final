@@ -59,6 +59,8 @@
     </th>
 
     <th></th>
+
+    <th></th>
   </tr>
 
   <% @user.own_photos.each do |photo| %>
@@ -82,6 +84,12 @@
     <td>
       <a href="/photos/<%= photo.id %>">
         Show details
+      </a>
+    </td>
+
+    <td>
+      <a href="/delete_photo/<%= photo.id %>">
+        Delete this photo
       </a>
     </td>
   </tr>

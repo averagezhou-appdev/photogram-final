@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # skip_before_action(:force_user_sign_in, { :only => [:new_registration_form, :create] })
+  skip_before_action(:force_user_sign_in, { :only => [:new_registration_form, :create, :index, :show] })
   def new_registration_form
     render({ :template => "user_sessions/sign_up.html.erb" })
   end
@@ -65,8 +65,11 @@ class UsersController < ApplicationController
   def show
     the_username = params.fetch("path_id")
     @user = User.where({ :username => the_username }).at(0)
-
-    render({ :template => "users/show.html.erb"})
+    if session.fetch(:user_id) == @user.id
+      render({ :template => "users/show.html.erb"})
+    else
+    redirect_to("/", { :notice => "Not your account, b*tch >:(" })
+    end
   end
 
   def feed
