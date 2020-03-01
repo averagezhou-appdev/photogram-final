@@ -8,6 +8,8 @@ class PhotosController < ApplicationController
   def show
     the_id = params.fetch("path_id")
     @photo = Photo.where({:id => the_id }).at(0)
+    session_id = session.fetch(:user_id)
+    @user = User.where({:id => session_id }).at(0)
 
     render({ :template => "photos/show.html.erb" })
   end
