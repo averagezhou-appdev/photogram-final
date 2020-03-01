@@ -12,6 +12,10 @@
 #  owner_id       :integer
 #
 class Photo < ApplicationRecord
+
+  validates(:poster, { :presence => true })
+  validates(:image, { :presence => true })
+
   has_many :comments, :dependent => :destroy
   has_many :likes, :dependent => :destroy
   belongs_to :poster, :class_name => "User", :foreign_key => "owner_id"

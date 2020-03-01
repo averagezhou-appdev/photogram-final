@@ -9,6 +9,8 @@
 #  photo_id   :integer
 #
 class Like < ApplicationRecord
+  validates(:fan, { :presence => true })
+  validates(:photo, { :presence => true })
 
   belongs_to :photo
   belongs_to :fan, :class_name => "User"

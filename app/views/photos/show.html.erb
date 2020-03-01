@@ -81,8 +81,14 @@
 
 <h2>Like this Photo</h2>
 <form action="/insert_like" method="post"> 
-  <input id="query_photo_id" type="hidden" value="<%= @photo.id %>" name="input_photo_id">
+  <input id="browser_photo_id" type="hidden" value="<%= @photo.id %>" name="query_photo_id">
   <button>Like</button>
+</form>
+
+<h2>Unlike this Photo</h2>
+<form action="/delete_like" method="post"> 
+  <input id="browser_photo_id" type="hidden" value="<%= @photo.id %>" name="query_photo_id">
+  <button>Unlike</button>
 </form>
 
 <h2>Comments</h2>
@@ -114,10 +120,10 @@
 <h3>Add a new comment</h3>
 
 <form action="/insert_comment" method="post"> 
-  <input id="query_photo_id" type="hidden" value="<%= @photo.id %>" name="input_photo_id">
+  <input id="query_photo_id" type="hidden" value="<%= @photo.id %>" name="query_photo_id">
 
   <label for="query_comment">Comment</label>
-  <textarea id="query_comment" name="input_body" placeholder="Enter a comment..."></textarea>
+  <textarea id="query_comment" name="query_body" placeholder="Enter a comment..."></textarea>
 
   <button>Add comment</button>
 </form>

@@ -10,6 +10,8 @@
 #  photo_id   :integer
 #
 class Comment < ApplicationRecord
+  validates(:author, {:presence => true })
+  validates(:photo, {:presence => true })
   belongs_to :photo
   belongs_to :author, :class_name => "User" 
 
