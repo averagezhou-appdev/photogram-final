@@ -71,6 +71,57 @@
   </div>
 </div>
 
+ <dt>Delete photo</dt>
+  <dd>
+    <a href="/delete_photo/<%= @photo.id %>;">
+      Delete this photo
+    </a>
+  </dd>
+</dl>
+
+<h2>Like this Photo</h2>
+<form action="/insert_like" method="post"> 
+  <input id="query_photo_id" type="hidden" value="<%= @photo.id %>" name="input_photo_id">
+  <button>Like</button>
+</form>
+
+<h2>Comments</h2>
+<table>
+  <tr>
+    <th>Commenter</th>
+    <th>Comment</th>
+    <th>Posted</th>
+  </tr>
+
+  <% @photo.comments.each do |comment| %>
+  <tr>
+    <td>
+      <%= comment.author.username %>
+    </td>
+
+    <td>
+      <%= comment.body %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(comment.created_at) %>
+    </td>
+  </tr>
+  
+  <% end %>
+</table>
+
+<h3>Add a new comment</h3>
+
+<form action="/insert_comment" method="post"> 
+  <input id="query_photo_id" type="hidden" value="<%= @photo.id %>" name="input_photo_id">
+
+  <label for="query_comment">Comment</label>
+  <textarea id="query_comment" name="input_body" placeholder="Enter a comment..."></textarea>
+
+  <button>Add comment</button>
+</form>
+
 <hr>
 
 

@@ -1,18 +1,5 @@
 class UsersController < ApplicationController
   # skip_before_action(:force_user_sign_in, { :only => [:new_registration_form, :create] })
-  
-  def index
-    @users = User.all.order({ :created_at => :desc })
-    render({ :template => "users/index.html.erb" })
-  end
-
-  def show
-    the_username = params.fetch(“path_id”)
-    @user = User.where({ :username => the_username }).at(0)
-
-    render({ :template => "users/show.html.erb" })
-  end
-
   def new_registration_form
     render({ :template => "user_sessions/sign_up.html.erb" })
   end
@@ -67,5 +54,41 @@ class UsersController < ApplicationController
     
     redirect_to("/", { :notice => "User account cancelled" })
   end
+
+
+  def index
+    @users = User.all.order({ :username => :asc })
+    render({ :template => "users/index.html.erb" })
+  end
+
+
+  def show
+    the_username = params.fetch("path_id")
+    @user = User.where({ :username => the_username }).at(0)
+
+    render({ :template => "users/show.html.erb"})
+  end
+
+  def feed
+    the_username = params.fetch("path_id")
+    @user = User.where({ :username => the_username }).at(0)
+
+    render({ :template => "users/feed.html.erb"})
+  end
+
+  def likes
+    the_username = params.fetch("path_id")
+    @user = User.where({ :username => the_username }).at(0)
+
+    render({ :template => "users/likes.html.erb"})
+  end
+
+  def discover
+    the_username = params.fetch("path_id")
+    @user = User.where({ :username => the_username }).at(0)
+
+    render({ :template => "users/discover.html.erb"})
+  end
+
   
 end

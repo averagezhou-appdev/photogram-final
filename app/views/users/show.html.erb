@@ -8,6 +8,25 @@
   <dt>ID</dt>
   <dd><%= @user.id %></dd>
 
+  <dt>Pending Follow Requests</dt>
+  <dd>
+
+
+  <ul>
+    <li>
+    </li>
+  </ul>
+
+  <% @user.pending_received_follow_requests.each do |request| %>
+  <ul>
+    <li>
+      <%= request.sender.username %>
+    </li>
+  </ul>
+  <% end %>
+</dd>
+
+
   <dt>Edit user</dt>
   <dd>
     <form action="/update_user/<%= @user.id %>" >
@@ -69,3 +88,4 @@
 
   <% end %>
 </table>
+
